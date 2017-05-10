@@ -4,10 +4,4 @@ Simple script to calculate the days remaining till the dismissal from the Greek 
 The name of the app comes from the words "Py" which implies the script is written in Python and "Lele" which is a military Greek slang word to say "I am dismissed".
 
 You can use it as follows:
-
-#TODO:
-# duration
-# start_date
-# end_date
-# Run as cronjob and print the days daily
-# Add it to pip
+TODO:
