@@ -8,7 +8,8 @@ You can use it as follows:
 
 ```git clone git@github.com:PeriGK/PyLele.git
 cd PyLele/src
-python3 main.py [--start: date joined the army] [--duration: number of months]```
+python3 main.py [--start: date joined the army] [--duration: number of months]
+```
 
 # Example:
 python3 main/py --start 10-01-2015 --duration 12
