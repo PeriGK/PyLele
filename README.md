@@ -13,7 +13,9 @@ python3 main.py [--start: date joined the army] [--duration: number of months]
 ```
 
 # Example:
+```
 python3 main/py --start 10-01-2015 --duration 12
+```
 This means that we joined the army in January 10th, 2015 and our duty is supposed to last for 15 months
 
 
