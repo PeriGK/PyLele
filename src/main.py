@@ -28,7 +28,7 @@ def apply_defaults(cmd_options):
 
 
 def normalise_cmd_input(cmd_options):
-    """We are expecting values of type string, but we might need to convert them to pythonic types"""
+    """We are expecting values of type string, but we might need to convert them to pythonic date types"""
     if '--start' in cmd_options:
         cmd_options['--start'] = datetime.strptime(cmd_options['--start'], '%d-%m-%Y')
     return cmd_options
@@ -38,19 +38,21 @@ def apply_input_checks(cmd_options):
     """Check if the parameters passed from the command line are in the expected format"""
     is_valid_input = True
     if '--duration' in cmd_options:
-        is_valid_input = cmd_options['--duration'].isnumeric()
+        is_valid_input = is_valid_input and cmd_options['--duration'].isnumeric()
     if '--start' in cmd_options:
         try:
             strptime(cmd_options['--start'], '%d-%m-%Y')
-            is_valid_input = True
+            is_valid_input = is_valid_input and True
         except:
-            is_valid_input = False
+            is_valid_input = is_valid_input and False
+    return is_valid_input
 
 def main():
     cmd_options = getopts(argv)
 
     if not apply_input_checks(cmd_options):
-        raise Exception("Not valid arguments were passed")
+        assert(apply_input_checks(cmd_options)), "Not valid arguments were passed"
+
     cmd_options = apply_defaults(cmd_options)
     cmd_options = normalise_cmd_input(cmd_options)
 
@@ -58,7 +60,8 @@ def main():
     start_month = cmd_options['--start'].month
     start_date = cmd_options['--start']
 
-    # The modulo division will return an integer representing a month index. If the result is 0, this means it is December(12 % 12 =0)
+    # The modulo division will return an integer representing a month index.
+    # If the result is 0, this means it is December(12 % 12 =0)
     # If it is 1, then it is November and so on.
     # dismissal_month = 12 - ((start_month + cmd_options['--duration']) % 12)
     dismissal_month = (start_month + cmd_options['--duration'])
@@ -84,6 +87,5 @@ def main():
     print("Total days of duty will be: {}. {} days, plus today, remaining to get dismissed from the army".format(total_days_duty, remaining_days))
     print("*********************")
 
-main()
-
-
+if __name__ == "__main__":
+    main()
