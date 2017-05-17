@@ -31,7 +31,7 @@ def normalise_cmd_input(cmd_options):
     """We are expecting values of type string, but we might need to convert them to pythonic date types"""
     if '--start' in cmd_options:
         # If the value is already of type datetime.datetime, there is no need to normalise it
-        if type(cmd_options['--start']) != "<class 'datetime.datetime'>":
+        if str(type(cmd_options['--start'])) != "<class 'datetime.datetime'>":
             cmd_options['--start'] = datetime.strptime(cmd_options['--start'], '%d-%m-%Y')
     return cmd_options
 
